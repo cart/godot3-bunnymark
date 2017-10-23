@@ -45,7 +45,7 @@ As a comparison to another engine, I ran the [Pixi.js bunny-mark](https://pixijs
 ### Remarks
 
 These results played out as one would expect:
-* GDScript < C#/Mono < GDNative (++).  
+* GDScript < C#/Mono < GDNative (C++).  
 * In the second test I added a get\_children() call to test marshalling/unmarshalling performance.  get\_children() had almost no effect on GDNative's performance (-1.56%) and GDScripts performance (-1.75%) as the array was not copied.  But it did have a significant effect on C#'s performance (-15.3%)
 * The third test illustrates what a landmine the C# marshalling is.  It only took 5 get\_children() calls to bring C#'s performance down to GDScript's performance.  Use enough calls like this and you could easily get performance that is worse than any of the other options.  Be wary of calling Godot apis from C# that set/return Arrays or Dictionaries.
 * In C# the game jumped / framerates dipped significantly (ex: from ~100 fps to ~80fps) after each click of the "add bunnies" button.  That did not happen for any of the other languages.
