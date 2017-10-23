@@ -4,6 +4,10 @@ Renders an increasing number of bunny sprites until a stable 60fps is hit.  This
 
 GDScript example adapted from: https://github.com/curly-brace/godot-bunnies.  Thanks @curly-brace!
 
+## Disclaimer
+
+It is important to note that C#/Mono and GDNative are both very young.  Its possible that their performance characteristics will change.  Additionally, this is just a single benchmark testing one use case.  Please don't use this to say "Language X is better / faster than Language Y", we don't have enough data to make those assertions.  If anything this proves that any of the choices below are viable.  Choose the language that you are comfortable with and do your own testing to cover your own scenarios.
+
 ## Benchmark Run - October 22, 2017
 
 *Standard*
@@ -35,6 +39,8 @@ GDScript example adapted from: https://github.com/curly-brace/godot-bunnies.  Th
 C#/Mono rendered 1.80x more bunnies than GDScript.  GDNative (C++) rendered 1.56x more bunnies than C#/Mono and 2.81x more bunnies than GDScript.
 
 As a comparison to another engine, I ran the [Pixi.js bunny-mark](https://pixijs.github.io/bunny-mark/) (which does the same thing) and rendered 35000 bunnies at 60fps.
+
+The "get_children()" tests are there to highlight marshalling performance and are not particularly scientific.  get_children was called on the parent node of the bunny sprites, so its performance is tied to the number of bunnies being rendered.  It would have been better to make it its own test where the number of bunnies are constant.
 
 ### Hardware:
 
