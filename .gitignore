@@ -1,0 +1,9 @@
+.import/
+.mono/
+.vscode/
+lib/
+logs/
+bin/
+cpp_bindings/
+godot_headers/
+*.os
