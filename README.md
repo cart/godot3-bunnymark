@@ -42,6 +42,14 @@ As a comparison to another engine, I ran the [Pixi.js bunny-mark](https://pixijs
 * GPU: Nvidia GeForce GTX 1070
 * RAM: 16GB DDR4
 
+### Build Info:
+* OS: Arch Linux
+* Compiler: gcc 7.2.0
+* Build Command: ```scons p=x11 target=release_debug tools=yes builtin_openssl=yes module_mono_enabled=yes -j4```
+  * tools=yes negatively affects performance. the next run will compile without tools (thanks @akien-mga)
+  * link time optimization will improve performance.  the next run will include use_lto=yes (thanks @akien-mga) 
+* Godot Commit: [ecdf49ec6126278e6469a1c5f25edf83cee1b036](https://github.com/godotengine/godot/commit/ecdf49ec6126278e6469a1c5f25edf83cee1b036)
+
 ### Remarks
 
 These results played out as one would expect:
