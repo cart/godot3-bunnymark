@@ -1,6 +1,6 @@
 # Godot 3.0 Bunnymark: GDScript vs C#/Mono vs GDNative(CPP)
 
-Renders an increasing number of bunny sprites until a stable 60fps is hit.  This is a decent test of real world usage as it combines Godot api usage with raw computation.
+Renders an increasing number of bunny sprites until a stable 60fps is hit.  This is a decent test of real world usage as it combines Godot api usage with raw computation.  I plan to update this README whenever significant performance changes occur or when new languages are added.  Feel free to contribute language implementations or improvements!
 
 GDScript example adapted from: https://github.com/curly-brace/godot-bunnies.  Thanks @curly-brace!
 
