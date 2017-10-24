@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://BenchmarkNoSprites.cs" type="Script" id=1]
+[ext_resource path="res://bunny.png" type="Texture" id=2]
+[ext_resource path="res://GUI.tscn" type="PackedScene" id=3]
+
+[node name="Scene" type="Node2D"]
+
+[node name="Sprites" type="Node2D" parent="."]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z" ]
+TBunny = ExtResource( 2 )
+
+[node name="gui" parent="." instance=ExtResource( 3 )]
+
+
