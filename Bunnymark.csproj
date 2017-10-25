@@ -49,9 +49,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BenchmarkNoSprites.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BenchmarkCS.cs" />
+    <Compile Include="benchmarks\BunnymarkV1Sprites\cs\BunnymarkV1Sprites.cs" />
+    <Compile Include="benchmarks\BunnymarkV1DrawTexture\cs\BunnymarkV1DrawTexture.cs" />
+    <Compile Include="benchmarks\BunnymarkV2\cs\BunnymarkV2.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

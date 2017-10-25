@@ -1,6 +1,9 @@
-comp:
-	clang -fPIC -o src/BenchmarkCPP.os -c src/BenchmarkCPP.cpp -g -O3 -std=c++14 -Icpp_bindings/include -Icpp_bindings/include/core -Igodot_headers
-	clang -o lib/BenchmarkCPP.so -shared src/BenchmarkCPP.os -Llib -lgodot_cpp_bindings
-	clang -fPIC -o src/BenchmarkCPPNS.os -c src/BenchmarkCPPNS.cpp -g -O3 -std=c++14 -Icpp_bindings/include -Icpp_bindings/include/core -Igodot_headers
-	clang -o lib/BenchmarkCPPNS.so -shared src/BenchmarkCPPNS.os -Llib -lgodot_cpp_bindings
-	
+sources = $(shell find benchmarks/ -type f -name '*.cpp')
+objects = $(patsubst %.cpp,%.o,$(sources))
+
+all:
+	rm -rf obj
+	mkdir obj
+	clang -fPIC -c $(sources) Bunnymark.cpp -g -O3 -std=c++14 -Igodot-cpp/include -Igodot-cpp/include/core -Igodot_headers
+	mv *.o obj
+	clang -o lib/BunnymarkCPP.so -shared obj/* -Llib -lgodot_cpp_bindings

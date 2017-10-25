@@ -11,8 +11,12 @@ config_version=3
 [application]
 
 config/name="Bunnymark"
-run/main_scene="res://BenchmarkGD.tscn"
+run/main_scene="res://Benchmarker.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/vsync/use_vsync=false
 
 [gdnative]
 

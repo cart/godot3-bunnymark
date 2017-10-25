@@ -5,8 +5,10 @@ lib/
 logs/
 bin/
 cpp_bindings/
+godot-cpp/
 godot_headers/
 *.os
+*.o
 nimcache/
 _dlls/
 _godotapi/

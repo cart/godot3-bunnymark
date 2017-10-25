@@ -27,12 +27,12 @@ proc genGodotApi() =
 
 task "build", "Builds the client for the current platform":
   genGodotApi()
-  withDir "nim-src":
+  withDir "benchmarks":
     direShell("nimble", "make")
 
 task "clean", "Remove files produced by build":
   removeDir(".nimcache")
-  removeDir("nim-src"/".nimcache")
+  removeDir("benchmarks"/".nimcache")
   removeDir("_godotapi")
   removeDir("_dlls")
-removeFile("nakefile")
+  removeFile("nakefile")
