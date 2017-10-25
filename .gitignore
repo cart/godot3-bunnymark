@@ -7,3 +7,4 @@ bin/
 cpp_bindings/
 godot_headers/
 *.os
+nimcache/
