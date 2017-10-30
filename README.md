@@ -6,6 +6,20 @@ Renders an increasing number of bunny sprites until a stable 60fps is hit.  This
 
 It is important to note that C#/Mono and GDNative are both very young.  Its possible that their performance characteristics will change.  Additionally, these are just a few benchmarks testing a few use cases.  Please don't use them to say "Language X is better / faster than Language Y", we don't have enough data to make those assertions.  If anything this proves that any of the choices below are viable.  Choose the language that you are comfortable with and do your own testing to cover your own scenarios.
 
+## Running
+
+* Build C++ files
+    * Setup headers and bindings using [these directions](https://github.com/GodotNativeTools/godot-cpp)
+    * run ```make``` in the root of this project
+* Build C# files
+    * run ```msbuild /p:Configuration=Tools;DebugSymbols=false;Optimize=true``` (some terminals might require escaping some of those symbols)
+* Build nim files
+    * Setup headers and bindings using [these directions](https://pragmagic.github.io/godot-nim/master/index.html)
+    * run ```nake build```
+* run ```sh run_benchmarks.sh```
+* wait!  This will take some time ... the automation code is still a bit naive so it takes awhile to converge on 60 fps
+* view the results in ```USER_HOME_DIRECTORY/.godot/app_userdata/Bunnymark/benchmark_results.json```
+
 ## Latest Run - October 29, 2017
 
 ### BunnymarkV2
