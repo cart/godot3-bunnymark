@@ -102,7 +102,7 @@ public:
                 
                 Sprite* bunny = (Sprite*)bunnies->get_child(child_count - 1);
                 speeds.pop_back();
-                owner->remove_child(bunny);
+                bunnies->remove_child(bunny);
         }
 
         void finish() {
