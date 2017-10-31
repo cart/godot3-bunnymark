@@ -1,0 +1,15 @@
+{
+    "name": "bunnymark-d",
+    "description" : "",
+    "authors" : ["Capital-Ex", "Cart"],
+    "license": "MIT",
+    "targetType": "dynamicLibrary",
+    "targetPath": "lib",
+    "sourcePaths": [
+        "benchmarks"
+    ],
+    "dependencies": {
+        "godot-d" : "*"
+    }
+    
+}

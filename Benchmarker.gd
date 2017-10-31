@@ -20,7 +20,8 @@ var stable_updates = 0
 
 var nativescript_languages = {
 	"cpp": true,
-	"nim": true
+	"nim": true,
+	"d": true,
 }
 
 func _ready():
@@ -34,6 +35,10 @@ func _ready():
 		benchmark = args[0].substr(1, args[0].length() - 1)
 	if args.size() >= 2:
 		language = args[1].substr(1, args[1].length() - 1)
+
+	match language:
+		"dlang": language = "d"
+
 	start_benchmark(benchmark, language)
 
 func _process(delta):

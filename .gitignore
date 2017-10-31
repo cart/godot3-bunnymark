@@ -13,3 +13,4 @@ nimcache/
 _dlls/
 _godotapi/
 .nimcache/
+.dub/

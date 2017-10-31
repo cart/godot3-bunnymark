@@ -16,6 +16,11 @@ It is important to note that C#/Mono and GDNative are both very young.  Its poss
 * Build nim files
     * Setup headers and bindings using [these directions](https://pragmagic.github.io/godot-nim/master/index.html)
     * run ```nake build```
+* Build D files
+    * `git clone` [godot-d](https://github.com/GodotNativeTools/godot-d) to your favorite directory
+    * [generate the buildings](https://github.com/GodotNativeTools/godot-d/blob/master/generator/README.md)
+    * run `dub add-local /path/to/godot-d/`
+    * run `dub build -b release`
 * run ```sh run_benchmarks.sh```
 * wait!  This will take some time ... the automation code is still a bit naive so it takes awhile to converge on 60 fps
 * view the results in ```USER_HOME_DIRECTORY/.godot/app_userdata/Bunnymark/benchmark_results.json```
