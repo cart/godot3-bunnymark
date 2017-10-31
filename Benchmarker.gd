@@ -8,6 +8,8 @@ var benchmark_node = null
 var output_path = "user://benchmark_results.json"
 var benchmark = null
 var language = null
+var arg_bench = "--bench="
+var arg_lang = "--lang="
 
 # bunnymark
 var bunnymark_target = 60.0
@@ -28,17 +30,17 @@ func _ready():
 	set_process(false)
 	fps_label = get_node("Panel/FPS")
 	benchmark_container = get_node("BenchmarkContainer")
-	var args = OS.get_cmdline_args()
+
 	benchmark = "BunnymarkV2"
 	language = "gd"
-	if args.size() >= 1:
-		benchmark = args[0].substr(1, args[0].length() - 1)
-	if args.size() >= 2:
-		language = args[1].substr(1, args[1].length() - 1)
 
-	match language:
-		"dlang": language = "d"
-
+	var args = OS.get_cmdline_args()
+	for arg in args:
+		if arg.substr(0, arg_bench.length()) == arg_bench:
+			benchmark = arg.split("=")[1]
+		elif arg.substr(0, arg_lang.length()) == arg_lang:
+			language = arg.split("=")[1]
+	
 	start_benchmark(benchmark, language)
 
 func _process(delta):
@@ -71,6 +73,7 @@ func benchmark_finished(output):
 	get_tree().quit()
 
 func write_result(output):
+	print("written ", output)
 	var file = File.new()
 	file.open(output_path, File.READ)
 	var parse_result = JSON.parse(file.get_as_text())

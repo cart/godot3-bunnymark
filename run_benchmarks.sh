@@ -7,7 +7,7 @@ for benchmark_path in benchmarks/*; do
 			then
 				language=$(basename $language_path)
 				echo $benchmark $language
-				godot -$benchmark -$language
+				godot --bench=$benchmark --lang=$language
 			fi
         done
     fi
