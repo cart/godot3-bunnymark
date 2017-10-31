@@ -13,7 +13,7 @@ It is important to note that C#/Mono and GDNative are both very young.  Its poss
     * run ```make``` in the root of this project
 * Build C# files
     * run ```msbuild /p:Configuration=Tools;DebugSymbols=false;Optimize=true``` (some terminals might require escaping some of those symbols)
-* Build nim files
+* Build Nim files
     * Setup headers and bindings using [these directions](https://pragmagic.github.io/godot-nim/master/index.html)
     * run ```nake build```
 * Build D files
@@ -25,7 +25,7 @@ It is important to note that C#/Mono and GDNative are both very young.  Its poss
 * wait!  This will take some time ... the automation code is still a bit naive so it takes awhile to converge on 60 fps
 * view the results in ```USER_HOME_DIRECTORY/.godot/app_userdata/Bunnymark/benchmark_results.json```
 
-## Latest Run - October 29, 2017
+## Benchmark Run - October 31, 2017
 
 ### BunnymarkV2
 
@@ -33,10 +33,11 @@ Attempts to draw as many sprites as possible using Sprite nodes.  It calls GetCh
 
 | Language           | Bunnies Rendered |
 |--------------------|------------------|
-| GDScript (Release) | 12120            |
-| C#/Mono            | 15620            |
-| GDNative (Nim)     | 23900            |
-| GDNative (C++)     | 29560            |
+| GDScript (Release) | 12160            |
+| ~~C#/Mono~~       | ~~16000 (encountered errors)~~|
+| GDNative (D)       | 21380            |
+| GDNative (Nim)     | 22520            |
+| GDNative (C++)     | 29240            |
 
 ### BunnymarkV1 - DrawTexture
 
@@ -44,10 +45,11 @@ Attempts to draw as many sprites to the screen as possible by drawing textures d
 
 | Language           | Bunnies Rendered |
 |--------------------|------------------|
-| GDScript (Release) | 13620            |
-| C#/Mono            | 50100            |
-| GDNative (Nim)     | 53700            |
-| GDNative (C++)     | 58140            
+| GDScript (Release) | 13820            |
+| C#/Mono            | 48680            |
+| GDNative (Nim)     | 52780            |
+| GDNative (D)       | 57360            |
+| GDNative (C++)     | 58120            
 
 ### BunnymarkV1 - Sprites
 
@@ -55,10 +57,11 @@ Attempts to draw as many sprites to the screen as possible by adding Sprite node
 
 | Language           | Bunnies Rendered |
 |--------------------|------------------|
-| GDScript (Release) | 11540            |
-| C#/Mono            | 19900            |
-| GDNative (Nim)     | 28180            |
-| GDNative (C++)     | 31360            |
+| GDScript (Release) | 11420            |
+| C#/Mono            | 19940            |
+| GDNative (Nim)     | 27840            |
+| GDNative (D)       | 28420            |
+| GDNative (C++)     | 30240            |
 
 ### Hardware:
 
@@ -74,11 +77,7 @@ Attempts to draw as many sprites to the screen as possible by adding Sprite node
 
 ### Remarks
 
-* The tests have changed since the first run so we shouldn't make direct comparisons to those numbers
-* This is the first test with Nim implementations.  It is only a bit slower than the c++ tests but its much easier to use.  Very promising!
-* The tests are now fully automated.  No more mindless clicking!
-* The test harness is currently written in GDScript.  It does things like test loading, measuring, adding/removing bunnies, etc. This probably results in a marginal performance hit, but it should be consistent across all languages so I think thats fairer (and less work) than implementing it in each language.
-* This run was the first to use the appropriate optimizations for each test.  Godot was built in release with link time optimization, no tools (except mono, which needs it afaik), mono was built without debug symbols and with optimizations, nim used -d:release and --opt:speed, c++ used -O3
+* The C# BunnymarkV2 test is currently hitting null reference exceptions where we would not expect them.  This may affect performance.  We are investigating this.
 
 ## Credits
 
