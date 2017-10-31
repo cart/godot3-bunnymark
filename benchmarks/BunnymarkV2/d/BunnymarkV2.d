@@ -113,8 +113,6 @@ class BunnymarkV2 : GodotScript!Node2D
 
     @Method 
     void finish() {
-        Array array = Array.empty_array();
-        array.pushBack(Variant(bunnies.getChildCount()));
-        owner.emitSignal("benchmark_finished", array);
+        owner.emitSignal("benchmark_finished", bunnies.getChildCount());
     }
 }
