@@ -1,0 +1,12 @@
+[entry]
+
+64 = "res://lib/BunnymarkCPP.so"
+32 = "res://lib/BunnymarkCPP.so"
+
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+
+[dependencies]

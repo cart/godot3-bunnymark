@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <tuple>
-#include <string> 
+#include <string>
 #include <core/Godot.hpp>
 #include <core/GodotGlobal.hpp>
 #include <Node2D.hpp>
@@ -19,7 +19,7 @@ public:
         Vector2 screenSize;
         std::vector<std::tuple<Vector2, Vector2>> bunnies = {};
         Ref<Texture> TBunny = ResourceLoader::load("res://images/godot_bunny.png");
-        float gravity = 500; 
+        float gravity = 500;
         Color white = Color(1.,1.,1.,1.);
         Ref<Texture> nullTexture = Ref<Texture>();
         BunnymarkV1DrawTexture() { srand (time(NULL)); }
@@ -70,7 +70,7 @@ public:
                                 newPosition.y *= -0.85f;
                             }
                         }
-            
+
                         if (position.y < 0)
                         {
                             newPosition.y = 0;
@@ -91,19 +91,19 @@ public:
                 if (bunnies.size() == 0) {
                         return;
                 }
-                
+
                 bunnies.pop_back();
         }
 
         void finish() {
                 Array array;
-                array.push_back(bunnies.size());
+                array.push_back((uint64_t)bunnies.size());
                 owner->emit_signal("benchmark_finished", array);
         }
 
         static void _register_methods() {
                 register_method((char *)"_ready", &BunnymarkV1DrawTexture::_ready);
-                
+
                 register_method((char *)"_process", &BunnymarkV1DrawTexture::_process);
                 register_method((char *)"_draw", &BunnymarkV1DrawTexture::_draw);
                 register_method((char *)"add_bunny", &BunnymarkV1DrawTexture::add_bunny);

@@ -9,11 +9,11 @@ import godot, godot.core;
 import godot.texture, godot.node2d, godot.label, godot.sprite;
 import godot.resourceloader;
 
-class BunnymarkV2 : GodotScript!Node2D 
-{   
+class BunnymarkV2 : GodotScript!Node2D
+{
     alias owner this;
-    @OnReady!((){return cast(Texture)ResourceLoader.load("res://images/godot_bunny.png");})
-    Texture texture;
+    @OnReady!((){return ResourceLoader.load("res://images/godot_bunny.png").as!(Ref!Texture);})
+    Ref!Texture texture;
 
     @OnReady!((){return Label._new();})
     Label label;
@@ -30,18 +30,18 @@ class BunnymarkV2 : GodotScript!Node2D
     }
 
 
-    @Method 
-    void _ready() 
+    @Method
+    void _ready()
     {
         this.addChild(bunnies);
-        
+
         label.setPosition(Vector2(0,20));
         this.addChild(label);
 
         this.setProcess(true);
     }
-    
-    @Method 
+
+    @Method
     void _process(float delta)
     {
         screenSize = getViewportRect().size;
@@ -54,7 +54,7 @@ class BunnymarkV2 : GodotScript!Node2D
             auto bunny = children[i].as!Sprite;
             Vector2 position = bunny.getPosition();
             Vector2 speed = speeds[i];
-            
+
             position.x += speed.x * delta;
             position.y += speed.y * delta;
 
@@ -91,7 +91,7 @@ class BunnymarkV2 : GodotScript!Node2D
         }
     }
 
-    @Method @Rename("add_bunny") 
+    @Method @Rename("add_bunny")
     void addBunny()
     {
         Sprite bunny = Sprite._new();
@@ -101,17 +101,17 @@ class BunnymarkV2 : GodotScript!Node2D
         speeds ~= Vector2(uniform(50, 250), uniform(50,200));
     }
 
-    @Method @Rename("remove_bunny") 
+    @Method @Rename("remove_bunny")
     void removeBunny()
     {
-        immutable int count = bunnies.getChildCount();
+        immutable long count = bunnies.getChildCount();
         if (count == 0)
             return;
         bunnies.removeChild(bunnies.getChild(count - 1));
         speeds.length--;
     }
 
-    @Method 
+    @Method
     void finish() {
         owner.emitSignal("benchmark_finished", bunnies.getChildCount());
     }
