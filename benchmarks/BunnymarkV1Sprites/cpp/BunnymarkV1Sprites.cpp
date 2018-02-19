@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <tuple>
-#include <string> 
+#include <string>
 #include <core/Godot.hpp>
 #include <core/GodotGlobal.hpp>
 #include <Node2D.hpp>
@@ -18,7 +18,7 @@ public:
         Vector2 screenSize;
         std::vector<std::tuple<Sprite*, Vector2>> bunnies = {};
         Ref<Texture> TBunny = ResourceLoader::load("res://images/godot_bunny.png");
-        float gravity = 500; 
+        float gravity = 500;
 
         BunnymarkV1Sprites() { srand (time(NULL)); }
 
@@ -62,7 +62,7 @@ public:
                                 newPosition.y *= -0.85f;
                             }
                         }
-            
+
                         if (position.y < 0)
                         {
                             newPosition.y = 0;
@@ -85,20 +85,20 @@ public:
                 if (bunnies.size() == 0) {
                         return;
                 }
-                
+
                 owner->remove_child(std::get<0>(bunnies[bunnies.size() - 1]));
                 bunnies.pop_back();
         }
 
         void finish() {
                 Array array;
-                array.push_back(bunnies.size());
+                array.push_back((uint64_t)bunnies.size());
                 owner->emit_signal("benchmark_finished", array);
         }
 
         static void _register_methods() {
                 register_method((char *)"_ready", &BunnymarkV1Sprites::_ready);
-                
+
                 register_method((char *)"_process", &BunnymarkV1Sprites::_process);
                 register_method((char *)"add_bunny", &BunnymarkV1Sprites::add_bunny);
                 register_method((char *)"remove_bunny", &BunnymarkV1Sprites::remove_bunny);

@@ -8,12 +8,12 @@ import godot, godot.core;
 import godot.texture, godot.node2d, godot.sprite;
 import godot.resourceloader;
 
-class BunnymarkV1Sprites : GodotScript!Node2D 
+class BunnymarkV1Sprites : GodotScript!Node2D
 {
     alias owner this;
 
-    @OnReady!((){return cast(Texture)ResourceLoader.load("res://images/godot_bunny.png");})
-    Texture texture;
+    @OnReady!((){return ResourceLoader.load("res://images/godot_bunny.png").as!(Ref!Texture);})
+    Ref!Texture texture;
 
     private {
         Vector2 screenSize;
@@ -25,20 +25,20 @@ class BunnymarkV1Sprites : GodotScript!Node2D
         const float gravity = 500.0;
     }
 
-    @Method 
-    void _ready() 
+    @Method
+    void _ready()
     {
         screenSize = getViewportRect().size;
         this.setProcess(true);
     }
-    
-    @Method 
+
+    @Method
     void _process(float delta)
     {
         screenSize = getViewportRect().size;
         for (int i; i < bunnies.length; i++)
         {
-            
+
             Vector2 position = bunnies[i].sprite.getPosition();
             Vector2 motion = bunnies[i].motion;
 
@@ -78,7 +78,7 @@ class BunnymarkV1Sprites : GodotScript!Node2D
         }
     }
 
-    @Method @Rename("add_bunny") 
+    @Method @Rename("add_bunny")
     public void addBunny()
     {
         Sprite bunny = Sprite._new();
@@ -88,7 +88,7 @@ class BunnymarkV1Sprites : GodotScript!Node2D
         bunnies ~= Pair(bunny, Vector2(uniform(50, 250), uniform(50,200)));
     }
 
-    @Method @Rename("remove_bunny") 
+    @Method @Rename("remove_bunny")
     void removeBunny()
     {
         if (bunnies.length == 0)
@@ -97,7 +97,7 @@ class BunnymarkV1Sprites : GodotScript!Node2D
         bunnies.length--;
     }
 
-    @Method 
+    @Method
     void finish() {
         owner.emitSignal("benchmark_finished", bunnies.length);
     }

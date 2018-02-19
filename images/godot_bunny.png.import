@@ -4,6 +4,14 @@ importer="texture"
 type="StreamTexture"
 path="res://.import/godot_bunny.png-5e0de01a4cf02b42e387f89806c8030b.stex"
 
+[deps]
+
+source_file="res://images/godot_bunny.png"
+source_md5="97b365dfd3bab27393cdb6b64e999675"
+
+dest_files=[ "res://.import/godot_bunny.png-5e0de01a4cf02b42e387f89806c8030b.stex" ]
+dest_md5="faca824dd79d16e2ee9b6a5b09418dba"
+
 [params]
 
 compress/mode=0

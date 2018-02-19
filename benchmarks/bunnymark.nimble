@@ -4,7 +4,7 @@ description   = "Godot-Nim Bunnymark"
 license       = "MIT"
 bin           = @["bunnymark"]
 
-requires "godot >= 0.6.0 & < 0.7.0"
+requires "godot >= 0.7.6 & < 0.8.0"
 
 task make, "build":
   const bitsPostfix = when sizeof(int) == 8: "_64" else: "_32"

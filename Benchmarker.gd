@@ -40,7 +40,7 @@ func _ready():
 			benchmark = arg.split("=")[1]
 		elif arg.substr(0, arg_lang.length()) == arg_lang:
 			language = arg.split("=")[1]
-	
+
 	start_benchmark(benchmark, language)
 
 func _process(delta):
@@ -64,8 +64,11 @@ func start_benchmark(benchmark_name, language):
 	benchmark_node.add_user_signal("benchmark_finished", ["output"])
 	benchmark_node.connect("benchmark_finished", self, "benchmark_finished")
 	benchmark_container.add_child(benchmark_node)
-	set_process(true)
-	
+	if benchmark_node.has_method("add_bunny"):
+		set_process(true)
+	else:
+		benchmark_finished(0)
+
 func benchmark_finished(output):
 	print("benchmark output: ", output)
 	benchmark_container.remove_child(benchmark_node)
@@ -100,9 +103,9 @@ func update_bunnymark(delta):
 		var difference = fps - bunnymark_target
 		var bunny_difference = 0
 		if difference > bunnymark_target_error:
-			bunny_difference = min(1000, max(1, difference*floor(20 * difference)))
+			bunny_difference = min(1000, max(1, floor(20 * difference)))
 		elif difference < -bunnymark_target_error:
-			bunny_difference = max(-1000, min(-1, -1*difference*ceil(20 * difference)))
+			bunny_difference = max(-1000, min(-1, -1*ceil(20 * difference)))
 		if abs(difference) < bunnymark_target_error:
 			stable_updates += 1
 			if stable_updates == stable_updates_required:

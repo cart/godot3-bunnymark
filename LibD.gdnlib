@@ -1,0 +1,12 @@
+[entry]
+
+32="res://lib/libbunnymark-d.so"
+64="res://lib/libbunnymark-d.so"
+
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+
+[dependencies]

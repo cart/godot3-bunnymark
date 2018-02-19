@@ -9,8 +9,10 @@ godot-cpp/
 godot_headers/
 *.os
 *.o
+*.exe
 nimcache/
 _dlls/
 _godotapi/
 .nimcache/
 .dub/
+/nakefile
