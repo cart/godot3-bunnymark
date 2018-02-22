@@ -6,6 +6,10 @@ Renders an increasing number of bunny sprites until a stable 60fps is hit.  This
 
 It is important to note that C#/Mono and GDNative are both very young.  Its possible that their performance characteristics will change.  Additionally, these are just a few benchmarks testing a few use cases.  Please don't use them to say "Language X is better / faster than Language Y", we don't have enough data to make those assertions.  If anything this proves that any of the choices below are viable.  Choose the language that you are comfortable with and do your own testing to cover your own scenarios.
 
+## Updates
+
+Follow me on twitter [@cart_cart](https://twitter.com/cart_cart) if you want Bunnymark updates or updates on my other projects!
+
 ## Running
 
 * Build C++ files
