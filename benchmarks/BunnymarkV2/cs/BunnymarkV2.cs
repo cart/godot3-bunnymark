@@ -6,7 +6,8 @@ using System.Linq;
 public class BunnymarkV2 : Node2D
 {
     Vector2 screenSize;
-    Texture bunnyTexture = (Texture)GD.load("res://images/godot_bunny.png");
+
+    Texture bunnyTexture = (Texture)GD.Load("res://images/godot_bunny.png");
     List<Vector2> speeds = new List<Vector2>();
     Random random = new Random();
     int gravity = 500;

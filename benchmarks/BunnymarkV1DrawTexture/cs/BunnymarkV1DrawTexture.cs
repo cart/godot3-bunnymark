@@ -12,7 +12,7 @@ public class BunnymarkV1DrawTexture : Node2D
 
 	List<Pair> bunnies = new List<Pair>();
 	Vector2 screenSize;
-    Texture bunnyTexture = (Texture)GD.load("res://images/godot_bunny.png");
+    Texture bunnyTexture = (Texture)GD.Load("res://images/godot_bunny.png");
 	Random random = new Random();
 	int gravity = 500;
 
