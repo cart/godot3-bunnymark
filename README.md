@@ -75,6 +75,6 @@ Attempts to draw as many sprites to the screen as possible by adding Sprite node
 
 ## Credits
 
-* GDScript example adapted from: https://github.com/curly-brace/godot-bunnies.  Thanks @curly-brace!
-* @Capital-EX provided the initial Nim tests, the D tests, and the display server tests
-* @endragor updated the GDNative tests to work with Godot 3.0 stable
+* GDScript example adapted from: https://github.com/curly-brace/godot-bunnies.  Thanks [@curly-brace](https://github.com/curly-brace)!
+* [@Capital-EX](https://github.com/Capital-EX) provided the initial Nim tests, the D tests, and the display server tests
+* [@endragor](https://github.com/endragor) updated the GDNative tests to work with Godot 3.0 stable
