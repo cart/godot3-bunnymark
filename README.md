@@ -4,7 +4,9 @@ Renders an increasing number of bunny sprites until a stable 60fps is hit.  This
 
 ## Disclaimer
 
-It is important to note that C#/Mono and GDNative are both very young.  Its possible that their performance characteristics will change.  Additionally, these are just a few benchmarks testing a few use cases.  Please don't use them to say "Language X is better / faster than Language Y", we don't have enough data to make those assertions.  If anything this proves that any of the choices below are viable.  Choose the language that you are comfortable with and do your own testing to cover your own scenarios.
+The performance differences here might appear significant, but these benchmarks test the limits of each language (and the engine), which most games will never hit.  Do not pick a language because it is "fastest" unless you know you need the fastest language.  The smarter choice would be to pick the language you are most productive in.  I personally think that most people will be more productive in GDScript or C#.  A lot of time and energy went into making GDScript an integrated, seamless experience so it is a good starting point if you don't have a preference for any of the other languages listed.
+
+It is also important to note that C#/Mono and GDNative are both very young.  Its possible that their performance characteristics will change.  And please don't use these benchmarks to say "Language X is better / faster than Language Y", we don't have enough data to make those assertions.  If anything this proves that any of the choices below are viable.  Choose the language that you are comfortable with and do your own testing to cover your own scenarios.
 
 ## Updates
 
