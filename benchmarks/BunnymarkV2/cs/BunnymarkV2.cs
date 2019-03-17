@@ -27,7 +27,7 @@ public class BunnymarkV2 : Node2D
         label.Text = $"Bunnies: {bunnies.GetChildCount()}";
         
         var bunnyChildren = bunnies.GetChildren();
-        for (var i = 0; i < bunnyChildren.Length; i++)
+        for (var i = 0; i < bunnyChildren.Count; i++)
         {
             var bunny = (Sprite)bunnyChildren[i];
             var position = bunny.Position;

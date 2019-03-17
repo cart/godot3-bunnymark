@@ -4,5 +4,5 @@
 
 [resource]
 
-class_name = "BunnymarkV2"
+class_name = "bunnymark.v2.BunnymarkV2"
 library = ExtResource( 1 )

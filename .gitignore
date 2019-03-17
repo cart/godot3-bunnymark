@@ -16,3 +16,4 @@ _godotapi/
 .nimcache/
 .dub/
 /nakefile
+export

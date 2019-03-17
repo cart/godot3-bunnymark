@@ -12,7 +12,7 @@ class BunnymarkV1DrawTexture : GodotScript!Node2D
 {
     alias owner this;
 
-    @OnReady!((){return ResourceLoader.load("res://images/godot_bunny.png").as!(Ref!Texture);})
+    @OnReady!((){return ResourceLoader.load(gs!"res://images/godot_bunny.png").as!(Ref!Texture);})
     Ref!Texture texture;
 
     private {
@@ -31,7 +31,6 @@ class BunnymarkV1DrawTexture : GodotScript!Node2D
     @Method
     void _ready()
     {
-
         screenSize = getViewportRect().size;
         this.setProcess(true);
     }
@@ -41,7 +40,7 @@ class BunnymarkV1DrawTexture : GodotScript!Node2D
     {
        for (int i = 0; i < bunnies.length; i++)
         {
-            this.base.drawTexture(texture, bunnies[i].position, white, nullTexture);
+            this.owner.drawTexture(texture, bunnies[i].position, white, nullTexture);
         }
     }
 
@@ -88,17 +87,17 @@ class BunnymarkV1DrawTexture : GodotScript!Node2D
             bunnies[i].position = position;
             bunnies[i].motion = motion;
         }
-        this.base.update();
+        this.owner.update();
     }
 
-    @Method @Rename("add_bunny")
-    void addBunny()
+    @Method
+    void add_bunny()
     {
         bunnies ~= Pair(Vector2(screenSize.x / 2.0, screenSize.y / 2.0), Vector2(uniform(50, 250), uniform(50,200)));
     }
 
-    @Method @Rename("remove_bunny")
-    void removeBunny()
+    @Method
+    void remove_bunny()
     {
         if (bunnies.length == 0)
             return;
@@ -107,6 +106,6 @@ class BunnymarkV1DrawTexture : GodotScript!Node2D
 
     @Method
     void finish() {
-        owner.emitSignal("benchmark_finished", bunnies.length);
+        owner.emitSignal(gs!"benchmark_finished", bunnies.length);
     }
 }

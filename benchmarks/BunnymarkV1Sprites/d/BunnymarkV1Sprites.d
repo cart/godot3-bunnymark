@@ -12,7 +12,7 @@ class BunnymarkV1Sprites : GodotScript!Node2D
 {
     alias owner this;
 
-    @OnReady!((){return ResourceLoader.load("res://images/godot_bunny.png").as!(Ref!Texture);})
+    @OnReady!((){return ResourceLoader.load(gs!"res://images/godot_bunny.png").as!(Ref!Texture);})
     Ref!Texture texture;
 
     private {
@@ -78,8 +78,8 @@ class BunnymarkV1Sprites : GodotScript!Node2D
         }
     }
 
-    @Method @Rename("add_bunny")
-    public void addBunny()
+    @Method
+    public void add_bunny()
     {
         Sprite bunny = Sprite._new();
         bunny.setTexture(texture);
@@ -88,8 +88,8 @@ class BunnymarkV1Sprites : GodotScript!Node2D
         bunnies ~= Pair(bunny, Vector2(uniform(50, 250), uniform(50,200)));
     }
 
-    @Method @Rename("remove_bunny")
-    void removeBunny()
+    @Method
+    void remove_bunny()
     {
         if (bunnies.length == 0)
             return;
@@ -99,6 +99,6 @@ class BunnymarkV1Sprites : GodotScript!Node2D
 
     @Method
     void finish() {
-        owner.emitSignal("benchmark_finished", bunnies.length);
+        owner.emitSignal(gs!"benchmark_finished", bunnies.length);
     }
 }

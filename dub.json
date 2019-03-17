@@ -9,7 +9,7 @@
         "benchmarks"
     ],
     "dependencies": {
-        "godot-d" : "*"
+        "godot-d": "*"
     }
     
 }

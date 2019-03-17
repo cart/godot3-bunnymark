@@ -4,5 +4,5 @@
 
 [resource]
 
-class_name = "BunnymarkV1DrawTexture"
+class_name = "bunnymark.v1.draw_texture.BunnymarkV1DrawTexture"
 library = ExtResource( 1 )

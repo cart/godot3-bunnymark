@@ -12,7 +12,8 @@ import godot.resourceloader;
 class BunnymarkV2 : GodotScript!Node2D
 {
     alias owner this;
-    @OnReady!((){return ResourceLoader.load("res://images/godot_bunny.png").as!(Ref!Texture);})
+
+    @OnReady!((){return ResourceLoader.load(gs!"res://images/godot_bunny.png").as!(Ref!Texture);})
     Ref!Texture texture;
 
     @OnReady!((){return Label._new();})
@@ -46,8 +47,7 @@ class BunnymarkV2 : GodotScript!Node2D
     {
         screenSize = getViewportRect().size;
         auto count = bunnies.getChildCount();
-        label.setText(text("Bunnies: ", count));
-
+        label.setText(String(text("Bunnies: ", count)));
         Array children = bunnies.getChildren();
         for (int i; i < children.size(); i++)
         {
@@ -91,8 +91,8 @@ class BunnymarkV2 : GodotScript!Node2D
         }
     }
 
-    @Method @Rename("add_bunny")
-    void addBunny()
+    @Method
+    void add_bunny()
     {
         Sprite bunny = Sprite._new();
         bunny.setTexture(texture);
@@ -101,8 +101,8 @@ class BunnymarkV2 : GodotScript!Node2D
         speeds ~= Vector2(uniform(50, 250), uniform(50,200));
     }
 
-    @Method @Rename("remove_bunny")
-    void removeBunny()
+    @Method
+    void remove_bunny()
     {
         immutable long count = bunnies.getChildCount();
         if (count == 0)
@@ -113,6 +113,6 @@ class BunnymarkV2 : GodotScript!Node2D
 
     @Method
     void finish() {
-        owner.emitSignal("benchmark_finished", bunnies.getChildCount());
+        owner.emitSignal(gs!"benchmark_finished", bunnies.getChildCount());
     }
 }

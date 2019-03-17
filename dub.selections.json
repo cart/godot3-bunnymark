@@ -1,6 +1,6 @@
 {
 	"fileVersion": 1,
 	"versions": {
-		"godot-d": "~master"
+		"godot-d": "0.1.2"
 	}
 }
