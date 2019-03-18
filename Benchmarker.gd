@@ -24,6 +24,7 @@ var nativescript_languages = {
 	"cpp": true,
 	"nim": true,
 	"d": true,
+	"rs": true,
 }
 
 func _ready():

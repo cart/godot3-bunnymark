@@ -17,3 +17,6 @@ _godotapi/
 .dub/
 /nakefile
 export
+
+target
+Cargo.lock
