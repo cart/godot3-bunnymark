@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class BunnymarkV1Sprites : Node2D
 {
-    private class Pair
+    private struct Pair
     {
         public Sprite Sprite;
         public Vector2 Vector;
@@ -21,8 +21,9 @@ public class BunnymarkV1Sprites : Node2D
     {
         screenSize = GetViewportRect().Size;
 
-        foreach (var bunny in bunnies)
+        for (int i = 0; i < bunnies.Count; i++)
         {
+            var bunny = bunnies[i];
             var position = bunny.Sprite.Position;
             var newPosition = bunny.Vector;
 
@@ -64,6 +65,8 @@ public class BunnymarkV1Sprites : Node2D
 
             bunny.Sprite.Position = position;
             bunny.Vector = newPosition;
+
+            bunnies[i] = bunny;
         }
     }
 

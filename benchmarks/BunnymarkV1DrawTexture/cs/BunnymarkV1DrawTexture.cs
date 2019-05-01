@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class BunnymarkV1DrawTexture : Node2D
 {
-	private class Pair
+	private struct Pair
 	{
 		public Vector2 Current;
 		public Vector2 Next;
@@ -26,8 +26,9 @@ public class BunnymarkV1DrawTexture : Node2D
 	{
 		screenSize = GetViewportRect().Size;
 
-		foreach (var bunny in bunnies)
+		for (int i = 0; i < bunnies.Count; i++)
 		{
+			var bunny = bunnies[i];
 			var position = bunny.Current;
 			var newPosition = bunny.Next;
 
@@ -69,6 +70,8 @@ public class BunnymarkV1DrawTexture : Node2D
 			
 			bunny.Current = position;
 			bunny.Next = newPosition;
+			
+			bunnies[i] = bunny;
 		}
 
 		Update();
