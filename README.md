@@ -27,6 +27,8 @@ Follow me on twitter [@cart_cart](https://twitter.com/cart_cart) if you want Bun
     * [generate the bindings](https://github.com/GodotNativeTools/godot-d/blob/master/generator/README.md)
     * run `dub add-local /path/to/godot-d/`
     * run `dub build -b release`
+* Build Rust files
+    * run `cargo build --release`
 * Build Godot with the [ECMAScript module](https://github.com/Geequlim/ECMAScript) if you want to run the ECMAScript tests
 * run ```sh run_benchmarks.sh```
 * wait!  This will take some time ... the automation code is still a bit naive so it takes awhile to converge on 60 fps
