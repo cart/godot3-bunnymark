@@ -7,8 +7,8 @@ reloadable=true
 
 [entry]
 
-X11.64="res://target/debug/libgodot3_bunnymark.so"
-OSX.64="res://target/debug/libgodot3_bunnymark.dylib"
+X11.64="res://target/release/libgodot3_bunnymark.so"
+OSX.64="res://target/release/libgodot3_bunnymark.dylib"
 
 [dependencies]
 
