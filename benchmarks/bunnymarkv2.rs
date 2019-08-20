@@ -9,7 +9,7 @@ pub struct BunnymarkV2 {
     bunny_speeds: Vec<Vector2>,
     bunny_texture: Texture,
     gravity: f32,
-    screen_size: euclid::Size2D<f32>,
+    screen_size: euclid::default::Size2D<f32>,
     label: Label,
 }
 
@@ -56,7 +56,10 @@ impl BunnymarkV2 {
     #[export]
     fn _process(&mut self, owner: Node2D, delta: f32) {
         unsafe {
-            self.screen_size = owner.get_viewport_rect().size;
+            self.screen_size = euclid::size2(
+                owner.get_viewport_rect().size.width,
+                owner.get_viewport_rect().size.height,
+            );
             self.label
                 .set_text(format!("Bunnies: {}", self.bunnies.get_child_count()).into());
         }
