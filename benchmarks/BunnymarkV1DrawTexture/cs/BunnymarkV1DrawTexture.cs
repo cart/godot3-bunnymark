@@ -10,7 +10,8 @@ public class BunnymarkV1DrawTexture : Node2D
 		public Vector2 Next;
 	}
 
-	List<Pair> bunnies = new List<Pair>();
+	Pair[] bunnies = new Pair[1024];
+	int count = 0;
 	Vector2 screenSize;
     Texture bunnyTexture = (Texture)GD.Load("res://images/godot_bunny.png");
 	Random random = new Random();
@@ -18,17 +19,17 @@ public class BunnymarkV1DrawTexture : Node2D
 
 	public override void _Draw()
 	{
-		foreach (var bunny in bunnies)
-			DrawTexture(bunnyTexture, bunny.Current);
+		for (int i = 0; i < count; i++)
+			DrawTexture(bunnyTexture, bunnies[i].Current);
 	}
 	
 	public override void _Process(float delta)
 	{
 		screenSize = GetViewportRect().Size;
 
-		for (int i = 0; i < bunnies.Count; i++)
+		for (int i = 0; i < count; i++)
 		{
-			var bunny = bunnies[i];
+			ref var bunny = ref bunnies[i];
 			var position = bunny.Current;
 			var newPosition = bunny.Next;
 
@@ -70,8 +71,6 @@ public class BunnymarkV1DrawTexture : Node2D
 			
 			bunny.Current = position;
 			bunny.Next = newPosition;
-			
-			bunnies[i] = bunny;
 		}
 
 		Update();
@@ -79,20 +78,25 @@ public class BunnymarkV1DrawTexture : Node2D
 
 	public void add_bunny()
 	{
-		bunnies.Add(new Pair() { Current = new Vector2(screenSize.x / 2, screenSize.y / 2), Next = new Vector2(random.Next() % 200 + 50, random.Next() % 200 + 50) });
+		if (count == bunnies.Length)
+		{
+			Array.Resize(ref bunnies, bunnies.Length * 2);
+		}
+		bunnies[count] = new Pair() { Current = new Vector2(screenSize.x / 2, screenSize.y / 2), Next = new Vector2(random.Next() % 200 + 50, random.Next() % 200 + 50) };
+		count++;
 	}
 
 	public void remove_bunny()
 	{
-		if (bunnies.Count == 0) {
+		if (count == 0) {
 			return;
 		}
 		
-		bunnies.RemoveAt(bunnies.Count - 1);
+		count--;
 	}
 
 	public void finish()
     {
-        EmitSignal("benchmark_finished", bunnies.Count);
+        EmitSignal("benchmark_finished", count);
     }
 }
