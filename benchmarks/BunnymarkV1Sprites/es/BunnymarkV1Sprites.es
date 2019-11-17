@@ -5,4 +5,3 @@
 [resource]
 class_name = "BunnymarkV1Sprites"
 library = ExtResource( 1 )
-

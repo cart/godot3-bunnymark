@@ -4,10 +4,13 @@ var bunnies = []
 var grav = 500
 var bunny_texture = load("res://images/godot_bunny.png")
 var screen_size
+var bunnies_container = Node2D.new()
+
+func _ready():
+	add_child(bunnies_container)
 
 func _process(delta):
 	screen_size = get_viewport_rect().size
-	
 	for bunny in bunnies:
 		var pos = bunny[0].position
 		var newPosition = bunny[1]
@@ -42,7 +45,7 @@ func _process(delta):
 func add_bunny():
 	var bunny = Sprite.new()
 	bunny.set_texture(bunny_texture)
-	add_child(bunny)
+	bunnies_container.add_child(bunny)
 	bunny.position = Vector2(screen_size.x / 2, screen_size.y / 2)
 	bunnies.append([bunny, Vector2(randi() % 200 + 50, randi() % 200 + 50)])
 
@@ -50,8 +53,11 @@ func remove_bunny():
 	if bunnies.size() == 0:
 		return
 	var bunny = bunnies[bunnies.size() - 1]
-	remove_child(bunny[0])
 	bunnies.pop_back()
+	bunny.queue_free()
+
+func get_bunny_count():
+	return bunnies.size()
 
 func finish():
 	emit_signal("benchmark_finished", bunnies.size())

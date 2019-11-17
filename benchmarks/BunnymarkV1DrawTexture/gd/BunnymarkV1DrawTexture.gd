@@ -50,8 +50,10 @@ func add_bunny():
 func remove_bunny():
 	if bunnies.size() == 0:
 		return
-
 	bunnies.pop_back()
+
+func get_bunny_count():
+	return bunnies.size()
 
 func finish():
 	emit_signal("benchmark_finished", bunnies.size())

@@ -3,6 +3,7 @@ extends Control
 var fps_update_interval = 1.0
 var elapsed_time = 0.0
 var fps_label = null
+var bunnies_label = null
 var benchmark_container = null
 var benchmark_node = null
 var output_path = "user://benchmark_results.json"
@@ -29,7 +30,8 @@ var nativescript_languages = {
 
 func _ready():
 	set_process(false)
-	fps_label = get_node("Panel/FPS")
+	fps_label = get_node("Panel/box/FPS")
+	bunnies_label = get_node("Panel/box/BunnyCount")
 	benchmark_container = get_node("BenchmarkContainer")
 
 	benchmark = "BunnymarkV2"
@@ -48,11 +50,16 @@ func _process(delta):
 	elapsed_time += delta
 	if elapsed_time >= fps_update_interval:
 		fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
+		var count = 0
+		if benchmark_node:
+			count = benchmark_node.get_bunny_count()
+		bunnies_label.text = "Bunnies: " + str(count)
 		elapsed_time = 0.0
 	if benchmark_is_bunnymark:
 		update_bunnymark(delta)
 
 func start_benchmark(benchmark_name, language):
+	printt("start benchmark", benchmark_name, language)
 	var language_extension = language
 	if nativescript_languages.has(language) and nativescript_languages[language]:
 		language_extension = "gdns"
@@ -72,7 +79,6 @@ func start_benchmark(benchmark_name, language):
 
 func benchmark_finished(output):
 	print("benchmark output: ", output)
-	benchmark_container.remove_child(benchmark_node)
 	write_result(output)
 	get_tree().quit()
 

@@ -6,15 +6,34 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BenchmarkContainer" type="Node2D" parent="."]
 
-[node name="Panel" type="Panel" parent="."]
-margin_right = 83.0
-margin_bottom = 14.0
+[node name="Panel" type="ColorRect" parent="."]
+margin_right = 124.0
+margin_bottom = 36.0
+color = Color( 0.0627451, 0.0627451, 0.0627451, 0.552941 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="FPS" type="Label" parent="Panel"]
+[node name="box" type="VBoxContainer" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS" type="Label" parent="Panel/box"]
+margin_right = 124.0
+margin_bottom = 14.0
 text = "FPS:"
 
+[node name="BunnyCount" type="Label" parent="Panel/box"]
+margin_top = 18.0
+margin_right = 124.0
+margin_bottom = 32.0
+text = "Bunnies:"

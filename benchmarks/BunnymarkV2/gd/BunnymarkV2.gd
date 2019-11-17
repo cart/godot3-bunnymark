@@ -3,19 +3,14 @@ extends Node2D
 var grav = 500
 var bunny_texture = load("res://images/godot_bunny.png")
 var bunny_speeds = []
-var label = Label.new()
 var bunnies = Node2D.new()
 var screen_size
 
 func _ready():
 	add_child(bunnies)
 
-	label.rect_position = Vector2(0, 20)
-	add_child(label)
-
 func _process(delta):
 	screen_size = get_viewport_rect().size
-	label.text = "Bunnies: " + str(bunnies.get_child_count())
 	
 	var bunny_children = bunnies.get_children()
 	for i in range(0, bunny_children.size()):
@@ -64,6 +59,10 @@ func remove_bunny():
 	var bunny = bunnies.get_child(child_count - 1)
 	bunny_speeds.pop_back()
 	bunnies.remove_child(bunny)
+	bunny.free()
+
+func get_bunny_count():
+	return bunnies.get_child_count()
 
 func finish():
 	emit_signal("benchmark_finished", bunnies.get_child_count())
