@@ -9,7 +9,7 @@ pub struct BunnymarkV2 {
     bunny_speeds: Vec<Vector2>,
     bunny_texture: Texture,
     gravity: f32,
-    screen_size: euclid::Size2D<f32>,
+    screen_size: euclid::Size2D<f32, f32>,
     label: Label,
 }
 
@@ -47,16 +47,17 @@ impl BunnymarkV2 {
     #[export]
     unsafe fn _ready(&mut self, mut owner: Node2D) {
         owner.set_process(true);
-        owner.add_child(Some(self.bunnies.to_object()), false);
+        owner.add_child(Some(self.bunnies.to_node()), false);
 
         self.label.set_position(Vector2::new(0., 20.));
-        owner.add_child(Some(self.label.to_object()), false);
+        owner.add_child(Some(self.label.to_node()), false);
     }
 
     #[export]
     fn _process(&mut self, owner: Node2D, delta: f32) {
         unsafe {
-            self.screen_size = owner.get_viewport_rect().size;
+            let size = owner.get_viewport_rect().size;
+            self.screen_size = euclid::size2(size.width, size.height);
             self.label
                 .set_text(format!("Bunnies: {}", self.bunnies.get_child_count()).into());
         }
@@ -108,7 +109,7 @@ impl BunnymarkV2 {
     unsafe fn add_bunny(&mut self, _owner: Node2D) {
         let mut bunny = Sprite::new();
         bunny.set_texture(Some(self.bunny_texture.clone()));
-        self.bunnies.add_child(Some(bunny.to_object()), false);
+        self.bunnies.add_child(Some(bunny.to_node()), false);
         bunny.set_position(Vector2::new(
             self.screen_size.width / 2.,
             self.screen_size.height / 2.,
@@ -127,7 +128,7 @@ impl BunnymarkV2 {
         };
         let bunny = self.bunnies.get_child(child_count - 1);
         if let Some(bunny) = bunny {
-            self.bunnies.remove_child(Some(bunny.to_object()));
+            self.bunnies.remove_child(Some(bunny));
         }
         self.bunny_speeds.pop();
     }
