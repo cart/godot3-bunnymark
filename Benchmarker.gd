@@ -73,6 +73,7 @@ func start_benchmark(benchmark_name, language):
 func benchmark_finished(output):
 	print("benchmark output: ", output)
 	benchmark_container.remove_child(benchmark_node)
+	benchmark_node.queue_free()
 	write_result(output)
 	get_tree().quit()
 
