@@ -11,36 +11,36 @@ gdobj BunnymarkV2 of Node2d:
     var gravity: float = 500.0
     
     method ready*() =
-        addChild(bunnies)
-        label.rectPosition = vec2(0.0,20.0)
-        addChild(label)
-        setProcess(true)
+        self.addChild(self.bunnies)
+        self.label.rectPosition = vec2(0.0,20.0)
+        self.addChild(self.label)
+        self.setProcess(true)
 
     method process*(delta: float64) =
-        screenSize = getViewportRect().size
-        label.text = "Bunnies: " & $bunnies.getChildCount()
+        self.screenSize = self.getViewportRect().size
+        self.label.text = "Bunnies: " & $self.bunnies.getChildCount()
 
-        var bunnyChildren = bunnies.getChildren()
+        var bunnyChildren = self.bunnies.getChildren()
         for i in 0..<bunnyChildren.len():
             var bunny = cast[Sprite](bunnyChildren[i])
             var position = bunny.position
-            var speed = speeds[i]
+            var speed = self.speeds[i]
 
             position.x += speed.x * delta
             position.y += speed.y * delta
 
-            speed.y += gravity * delta
+            speed.y += self.gravity * delta
 
-            if position.x > screenSize.x:
+            if position.x > self.screenSize.x:
                 speed.x *= -1
-                position.x = screenSize.x
+                position.x = self.screenSize.x
             
             if position.x < 0:
                 speed.x *= -1
                 position.x = 0
             
-            if position.y > screenSize.y:
-                position.y = screenSize.y
+            if position.y > self.screenSize.y:
+                position.y = self.screenSize.y
                 if (random(1.0) > 0.5):
                     speed.y = (random(1100.0) + 50.0)
                 else:
@@ -51,22 +51,22 @@ gdobj BunnymarkV2 of Node2d:
                 position.y = 0
             
             bunny.position = position
-            speeds[i] = speed
+            self.speeds[i] = speed
 
     proc addBunny*() {.gdExport.} =
         let bunny = gdnew[Sprite]()
-        bunny.texture = texture
-        bunnies.addChild(bunny)
-        bunny.position = vec2(screenSize.x / 2, screenSize.y / 2)
-        speeds.add(vec2(random(200.0) + 50.0, random(200.0) + 50.0))
+        bunny.texture = self.texture
+        self.bunnies.addChild(bunny)
+        bunny.position = vec2(self.screenSize.x / 2, self.screenSize.y / 2)
+        self.speeds.add(vec2(random(200.0) + 50.0, random(200.0) + 50.0))
     
     proc removeBunny*() {.gdExport.} =
-        var childCount = bunnies.getChildCount()
+        var childCount = self.bunnies.getChildCount()
         if childCount == 0:
             return
-        var bunny = bunnies.getChild(childCount - 1)
-        var speed = speeds.pop()
-        bunnies.removeChild(bunny)
+        var bunny = self.bunnies.getChild(childCount - 1)
+        var speed = self.speeds.pop()
+        self.bunnies.removeChild(bunny)
     
     proc finish*() {.gdExport.} =
-        emitSignal("benchmark_finished", @[newVariant(bunnies.getChildCount())])
+        self.emitSignal("benchmark_finished", @[newVariant(self.bunnies.getChildCount())])

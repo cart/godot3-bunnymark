@@ -13,11 +13,11 @@
 
 using namespace godot;
 
-class BunnymarkV2 : public GodotScript<Node2D> {
-        GODOT_CLASS(BunnymarkV2);
+class BunnymarkV2 : public Node2D {
+        GODOT_CLASS(BunnymarkV2, Node2D);
 public:
         Vector2 screenSize;
-        Ref<Texture> TBunny = ResourceLoader::load("res://images/godot_bunny.png");
+        Ref<Texture> TBunny = ResourceLoader::get_singleton()->load("res://images/godot_bunny.png");
         float gravity = 500; 
         std::vector<Vector2> speeds;
         Label* label = new Label();
@@ -26,15 +26,15 @@ public:
         BunnymarkV2() { srand (time(NULL)); }
 
         void _ready() {
-                owner->set_process(true);
-                owner->add_child(bunnies);
+                set_process(true);
+                add_child(bunnies);
 
                 label->set_position(Vector2(0, 20));
-                owner->add_child(label);
+                add_child(label);
         }
 
         void _process(const float delta) {
-                screenSize = owner->get_viewport_rect().size;
+                screenSize = get_viewport_rect().size;
 
                 String bunnies_count =  std::to_string(bunnies->get_child_count()).c_str();
                 String label_value = "Bunnies: " + bunnies_count;
@@ -108,15 +108,15 @@ public:
         void finish() {
                 Array array;
                 array.push_back(bunnies->get_child_count());
-                owner->emit_signal("benchmark_finished", array);
+                emit_signal("benchmark_finished", array);
         }
 
         static void _register_methods() {
-                register_method((char *)"_ready", &BunnymarkV2::_ready);
+                // register_method("_ready", &BunnymarkV2::_ready);
                 
-                register_method((char *)"_process", &BunnymarkV2::_process);
-                register_method((char *)"add_bunny", &BunnymarkV2::add_bunny);
-                register_method((char *)"remove_bunny", &BunnymarkV2::remove_bunny);
-                register_method((char *)"finish", &BunnymarkV2::finish);
+                // register_method("_process", &BunnymarkV2::_process);
+                register_method("add_bunny", &BunnymarkV2::add_bunny);
+                register_method("remove_bunny", &BunnymarkV2::remove_bunny);
+                register_method("finish", &BunnymarkV2::finish);
         }
 };

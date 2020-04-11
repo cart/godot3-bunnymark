@@ -9,6 +9,6 @@ path = "benchmarks/lib.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
-gdnative = { git = "https://github.com/GodotNativeTools/godot-rust" }
+gdnative = "0.8"
 euclid = "*"
 rand = "0.6"

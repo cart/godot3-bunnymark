@@ -9,30 +9,30 @@ gdobj BunnymarkV1Sprites of Node2d:
     var gravity: float = 500.0
     
     method ready*() =
-        setProcess(true)
+        self.setProcess(true)
         
     method process*(delta: float64) =
-        screenSize = getViewportRect().size
+        self.screenSize = self.getViewportRect().size
 
-        for bunny in bunnies.mitems:
+        for bunny in self.bunnies.mitems:
             var position = bunny.sprite.position
             var motion = bunny.motion
 
             position.x += motion.x * delta
             position.y += motion.y * delta
 
-            motion.y += gravity * delta
+            motion.y += self.gravity * delta
 
-            if position.x > screenSize.x:
+            if position.x > self.screenSize.x:
                 motion.x *= -1
-                position.x = screenSize.x
+                position.x = self.screenSize.x
             
             if position.x < 0:
                 motion.x *= -1
                 position.x = 0
             
-            if position.y > screenSize.y:
-                position.y = screenSize.y
+            if position.y > self.screenSize.y:
+                position.y = self.screenSize.y
                 if (random(1.0) > 0.5):
                     motion.y = (random(1100.0) + 50.0)
                 else:
@@ -47,17 +47,17 @@ gdobj BunnymarkV1Sprites of Node2d:
 
     proc addBunny*() {.gdExport.} =
         let sprite = gdnew[Sprite]()
-        sprite.texture = texture
-        addChild(sprite)
-        sprite.position = vec2(screenSize.x / 2, screenSize.y / 2)
-        bunnies.add((sprite, vec2(random(200.0) + 50.0, random(200.0) + 50.0)))
+        sprite.texture = self.texture
+        self.addChild(sprite)
+        sprite.position = vec2(self.screenSize.x / 2, self.screenSize.y / 2)
+        self.bunnies.add((sprite, vec2(random(200.0) + 50.0, random(200.0) + 50.0)))
     
     proc removeBunny*() {.gdExport.} =
-        if bunnies.len == 0:
+        if self.bunnies.len == 0:
             return
 
-        var bunny = bunnies.pop();
-        removeChild(bunny.sprite)
+        var bunny = self.bunnies.pop();
+        self.removeChild(bunny.sprite)
     
     proc finish*() {.gdExport.} =
-        emitSignal("benchmark_finished", @[newVariant(bunnies.len)])
+        self.emitSignal("benchmark_finished", @[newVariant(self.bunnies.len)])

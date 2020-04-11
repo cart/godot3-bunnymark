@@ -49,7 +49,7 @@ impl BunnymarkV2 {
         owner.set_process(true);
         owner.add_child(Some(self.bunnies.to_node()), false);
 
-        self.label.set_position(Vector2::new(0., 20.));
+        self.label.set_position(Vector2::new(0., 20.), false);
         owner.add_child(Some(self.label.to_node()), false);
     }
 

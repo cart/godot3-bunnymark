@@ -13,29 +13,29 @@
 
 using namespace godot;
 
-class BunnymarkV1DrawTexture : public GodotScript<Node2D> {
-        GODOT_CLASS(BunnymarkV1DrawTexture);
+class BunnymarkV1DrawTexture : public Node2D {
+        GODOT_CLASS(BunnymarkV1DrawTexture, Node2D);
 public:
         Vector2 screenSize;
         std::vector<std::tuple<Vector2, Vector2>> bunnies = {};
-        Ref<Texture> TBunny = ResourceLoader::load("res://images/godot_bunny.png");
+        Ref<Texture> TBunny = ResourceLoader::get_singleton()->load("res://images/godot_bunny.png");
         float gravity = 500;
         Color white = Color(1.,1.,1.,1.);
         Ref<Texture> nullTexture = Ref<Texture>();
         BunnymarkV1DrawTexture() { srand (time(NULL)); }
 
         void _ready() {
-                owner->set_process(true);
+                set_process(true);
         }
 
         void _draw() {
                 for (int i = 0; i < bunnies.size(); i++) {
-                        owner->draw_texture(TBunny, std::get<0>(bunnies[i]), white, nullTexture);
+                        draw_texture(TBunny, std::get<0>(bunnies[i]), white, nullTexture);
                 }
         }
 
         void _process(const float delta) {
-                screenSize = owner->get_viewport_rect().size;
+                screenSize = get_viewport_rect().size;
                 for (int i = 0; i < bunnies.size(); i++) {
                         std::tuple<Vector2, Vector2> bunny = bunnies[i];
 
@@ -80,7 +80,7 @@ public:
                         bunnies[i] = std::make_tuple(position, newPosition);
                 }
 
-                owner->update();
+                update();
         }
 
         void add_bunny() {
@@ -98,16 +98,16 @@ public:
         void finish() {
                 Array array;
                 array.push_back((uint64_t)bunnies.size());
-                owner->emit_signal("benchmark_finished", array);
+                emit_signal("benchmark_finished", array);
         }
 
         static void _register_methods() {
-                register_method((char *)"_ready", &BunnymarkV1DrawTexture::_ready);
+                // register_method((char *)"_ready", &BunnymarkV1DrawTexture::_ready);
 
-                register_method((char *)"_process", &BunnymarkV1DrawTexture::_process);
-                register_method((char *)"_draw", &BunnymarkV1DrawTexture::_draw);
-                register_method((char *)"add_bunny", &BunnymarkV1DrawTexture::add_bunny);
-                register_method((char *)"remove_bunny", &BunnymarkV1DrawTexture::remove_bunny);
-                register_method((char *)"finish", &BunnymarkV1DrawTexture::finish);
+                // register_method((char *)"_process", &BunnymarkV1DrawTexture::_process);
+                // register_method((char *)"_draw", &BunnymarkV1DrawTexture::_draw);
+                register_method("add_bunny", &BunnymarkV1DrawTexture::add_bunny);
+                register_method("remove_bunny", &BunnymarkV1DrawTexture::remove_bunny);
+                register_method("finish", &BunnymarkV1DrawTexture::finish);
         }
 };

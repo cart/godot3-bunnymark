@@ -10,3 +10,6 @@ load_once=true
 symbol_prefix="godot_"
 
 [dependencies]
+
+X11.64=[  ]
+OSX.64=[  ]
