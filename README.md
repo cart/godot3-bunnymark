@@ -1,3 +1,7 @@
+## :warning: Notice: Inactive Project :warning: 
+
+**This project is no longer actively maintained. The results have not been updated in awhile and the performance characteristics of Godot and the various bindings have changed. I'm now focusing my efforts on running the [Bevy Engine](https://bevyengine.org/) project full time. If anyone wants to fork and continue elsewhere, I encourage you to do so.**
+
 ![Godot Bunnymark](images/banner.png)
 
 Renders an increasing number of bunny sprites until a stable 60fps is hit.  This is a decent test of real world usage as it combines Godot api usage with raw computation.  I plan to update this README whenever significant performance changes occur or when new languages are added.  Feel free to contribute language implementations or improvements!
